@@ -2,31 +2,8 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<script src='doPost.js'></script>
 </head>
-  <script>
-     async function doFetch() {
-  try {
-    const POST_URL='https://script.google.com/macros/s/AKfycbyXgMgxKBckRAhfrMtoa-k8vHrJLh_PpXmsbO754lymSf4EwM_savdbRyDFpjBwybtLow/exec';
-    const res = await fetch(POST_URL,{//自POST URL
-      method: 'POST',
-      body: JSON.stringify({email:'naka4o.hd@gmail.com'})
-    });
-    const st = await res.json();
-    const message=st.replace(/\n/g,'<br>');
-    output.innerHTML = `
-    ${message}
-    <p><hr>`;
-  } catch (error) {
-        console.error('エラーが発生しました:', error);
-        document.getElementById('output').innerHTML = `
-<strong>      
-エラーが発生しました。
-${error}
-</strong>
-`;
-  }
-}
-  </script>
 <body onload='doFetch();'>
   <div id='output'></div>
 </body>

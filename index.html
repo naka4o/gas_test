@@ -9,7 +9,7 @@
     const POST_URL='https://script.google.com/macros/s/AKfycbyXgMgxKBckRAhfrMtoa-k8vHrJLh_PpXmsbO754lymSf4EwM_savdbRyDFpjBwybtLow/exec';
     const res = await fetch(POST_URL,{//自POST URL
       method: 'POST',
-      body: JSON.stringify({'naka4o.hd@gmail.com' })
+      body: JSON.stringify({email:'naka4o.hd@gmail.com'})
     });
     const st = await res.json();
     const message=st.replace(/\n/g,'<br>');

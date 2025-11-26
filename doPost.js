@@ -1,33 +1,15 @@
 <script>
-async function writeData() {
-    const attendSelector = document.querySelector('input[name="attend"]:checked');
-    if(!attendSelector) {
-      const dialog=document.getElementById('dialog');
-      if(dialog) dialog.innerHTML=`
-参加不参加を選択してください。<br>
-<button onclick="document.querySelector('dialog').close()">
-閉じる
-  </button>
-  `;
-    	dialog.showModal();
-      return;
-    }
-    const form = document.getElementById("dataForm");
-    //if(form)form.style.display='none';
+async function doPost() {
+    const email = 'naka4o.hd@gmail.com';
+    const name = '中塩';
+    const grad = 'S60';
+    const 会 = '小泉会';
 
-    const email = document.getElementById('email').value;
-    const name = document.getElementById('name').value;
-    const grad = document.getElementById('grad').value;
-    const 会 = document.getElementById('会').value;
-
-
-    const attend = attendSelector.value;
-    let number = document.getElementById('number').value;
+    const attend = '参加';
+    let number = '';
     if(attend!=='参加') number = '';
-    let message = document.getElementById('message').value;
-    disableAllFormElements('dataForm');
-    message = addKey(message,"write");
-    document.getElementById("timeLimit").innerHTML=`    
+    let message = '';
+    document.getElementById("output").innerHTML=`    
 <h3>データ送信中.. 数秒お待ちください ..</h3>
 `;
 
@@ -37,24 +19,20 @@ async function writeData() {
       message,
       email, name , grad, 会,
     };
-    console.log(formData)
-    // POST_URL = '<deployURL>';
+    console.log(formData);
+    const URL='https://script.google.com/macros/s/AKfycbzLVksrx6uWaQsKNWyTV_as3vBmJ3FhisoGJCUv7bL_LpFPYZZyQOm02rbVMlaV173A9g/exec';
 try {
     const res = await fetch(getPostURL(), {
       method: 'POST',
       body: JSON.stringify(formData)
     });
     const d = await res.json();
-    if(!d.number)d.number='';
-    if(!d.message)d.message='';
-    form.style.display="block";
-    form.innerHTML =`
+    document.getElementById('output').innerHTML =`
 <h3>ご回答、ありがとうございました。</h3>
     `; 
-    document.getElementById("timeLimit").innerHTML="";
 } catch (error) {
         console.error('エラーが発生しました:', error);
-        document.getElementById('dialog').innerHTML = `
+        document.getElementById('output').innerHTML = `
 <strong>      
 エラーが発生しました。
 ${error}

@@ -2,39 +2,32 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>あなたのＨＰタイトル</title>
-<meta name="keywords" content="ページのキーワードA,B,C">
-<meta name="description" content="ページの説明">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="index.css">
 </head>
-<body>
-<div id="outer">
-<div id="inner">
-<header><h1>あなたのＨＰタイトル</h1>
-</header>
-<main>
-<h2>記事ページ見出し・大</h2>
-<p>文章あれこれ</p>
-<h3>記事ページ見出し・中</h3>
-<p>文章あれこれ</p>
-<h4>記事ページ見出し・小</h4>
-<p>文章あれこれ</p>
-</main>
-<aside>
-<div class="title">menu</div>
-<ul>
-<li>記事ページへのリンク</li>
-<li>記事ページへのリンク</li>
-</ul>
-</aside>
-<footer>
-<div id="pagetop">
-<a href="#outer"><svg viewBox="0 0 24 24" width="24px" height="24px" xmlns="http://www.w3.org/2000/svg">
-<path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8z" fill="#999"/></svg></a>
-</div>
-© 2010 あなたのホームページ
-</footer>
-</div></div>
+  <script>
+     async function doFetch() {
+  try {
+    const POST_URL='https://script.google.com/macros/s/AKfycbyXgMgxKBckRAhfrMtoa-k8vHrJLh_PpXmsbO754lymSf4EwM_savdbRyDFpjBwybtLow/exec';
+    const res = await fetch(POST_URL,{//自POST URL
+      method: 'POST',
+      body: JSON.stringify({'naka4o.hd@gmail.com' })
+    });
+    const st = await res.json();
+    const message=st.replace(/\n/g,'<br>');
+    output.innerHTML = `
+    ${message}
+    <p><hr>`;
+  } catch (error) {
+        console.error('エラーが発生しました:', error);
+        document.getElementById('output').innerHTML = `
+<strong>      
+エラーが発生しました。
+${error}
+</strong>
+`;
+  }
+}
+  </script>
+<body onload='doFetch();'>
+  <div id='output'><?div>
 </body>
 </html>

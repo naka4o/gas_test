@@ -1,4 +1,3 @@
-<script>
 async function doPost() {
     const email = 'naka4o.hd@gmail.com';
     const name = '中塩';
@@ -40,4 +39,3 @@ ${error}
 `;
 }
   }
-</script>

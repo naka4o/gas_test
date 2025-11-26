@@ -21,7 +21,7 @@ async function doPost() {
     console.log(formData);
     const URL='https://script.google.com/macros/s/AKfycbzLVksrx6uWaQsKNWyTV_as3vBmJ3FhisoGJCUv7bL_LpFPYZZyQOm02rbVMlaV173A9g/exec';
 try {
-    const res = await fetch(getPostURL(), {
+    const res = await fetch(URL, {
       method: 'POST',
       body: JSON.stringify(formData)
     });
